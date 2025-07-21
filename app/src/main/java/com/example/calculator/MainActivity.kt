@@ -1,5 +1,4 @@
-package com.example.calculator // <-- Убедитесь, что это ваш пакет
-
+package com.example.calculator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -11,7 +10,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var resultTextView: TextView
 
-    // Переменные для хранения состояния калькулятора
     private var operand1: Double? = null
     private var pendingOperation = ""
     private var isNewOperation = true
@@ -22,7 +20,6 @@ class MainActivity : AppCompatActivity() {
 
         resultTextView = findViewById(R.id.resultTextView)
 
-        // Назначаем единый обработчик кликов для всех кнопок
         val listener = View.OnClickListener { v ->
             val button = v as Button
             when (button.id) {
@@ -44,7 +41,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Привязываем обработчик ко всем кнопкам
         findViewById<Button>(R.id.button_0).setOnClickListener(listener)
         findViewById<Button>(R.id.button_1).setOnClickListener(listener)
         findViewById<Button>(R.id.button_2).setOnClickListener(listener)
