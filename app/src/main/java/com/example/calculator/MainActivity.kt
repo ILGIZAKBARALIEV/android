@@ -1,4 +1,6 @@
 package com.example.calculator
+
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,6 +11,7 @@ import java.text.DecimalFormat
 class MainActivity : AppCompatActivity() {
 
     private lateinit var resultTextView: TextView
+    private lateinit var showResultButton: Button
 
     private var operand1: Double? = null
     private var pendingOperation = ""
@@ -19,8 +22,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         resultTextView = findViewById(R.id.resultTextView)
+        showResultButton = findViewById(R.id.button_show_result)
+
 
         val listener = View.OnClickListener { v ->
+            showResultButton.visibility = View.GONE
             val button = v as Button
             when (button.id) {
                 R.id.button_0, R.id.button_1, R.id.button_2, R.id.button_3,
@@ -60,6 +66,12 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.button_ac).setOnClickListener(listener)
         findViewById<Button>(R.id.button_percent).setOnClickListener(listener)
         findViewById<Button>(R.id.button_sign).setOnClickListener(listener)
+        showResultButton.setOnClickListener {
+            val result = resultTextView.text.toString()
+            val intent = Intent(this, SecondActivity::class.java)
+            intent.putExtra("result", result)
+            startActivity(intent)
+        }
     }
 
     private fun onNumberClick(button: Button) {
@@ -126,6 +138,7 @@ class MainActivity : AppCompatActivity() {
             operand1 = result
             pendingOperation = ""
             isNewOperation = true
+            showResultButton.visibility = View.VISIBLE
         }
     }
 

@@ -7,6 +7,17 @@
     android:background="#000000"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/button_show_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Показать результат"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp" />
+
     <TextView
         android:id="@+id/resultTextView"
         android:layout_width="0dp"
